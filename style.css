@@ -187,7 +187,7 @@ h4 {
     min-width: 250px;
     margin-bottom: 20px;
     flex-basis: 25%;
-    text-align: center;
+    text-align: left;
     text-decoration: none;
 }
 
@@ -197,4 +197,84 @@ ul {
 
 .footer-col-3 ul li {
     display: inline-block;
+}
+
+
+/*CONTACT US*/
+
+.contact {
+    font-family: "Lilita One", sans-serif;
+    text-align: center;
+    font-size: 40px;
+    color: black;
+    text-decoration: none;
+}
+
+.q {
+    font-size: 40px;
+}
+
+.contactForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    margin-top: 50px;
+    width: 90%;
+    max-width: 600px;
+}
+
+.formContact {
+    margin-bottom: 0px;
+    position: relative;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 2px solid black;
+    color: black;
+    background: transparent;
+    font-size: 15px;
+}
+
+label {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 10px;
+    color: black;
+    cursor: text;
+    transition: 0.2s;
+}
+
+.formBtn {
+    padding: 10px 0;
+    color: black;
+    outline: none;
+    background: transparent;
+    border: 2px solid black;
+    width: 100%;
+    cursor: pointer;
+    margin-right: 200px;
+    transition: 0.3s ease-in-out;
+}
+
+.formBtn:hover {
+    background: turquoise;
+}
+
+input:focus~label,
+input:valid~label,
+textarea:focus~label,
+textarea:valid~label {
+    top: -35px;
+    color: black;
 }
