@@ -262,6 +262,25 @@ ul {
     background-color: #ffffff;
 }
 
+.btn-sub {
+    display: inline-block;
+    position: relative;
+    background: #ff523b;
+    color: #fff;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 30px;
+    transition: ease-in-out, 0.5s;
+}
+
+.btn-sub:hover {
+    background: #563434;
+}
+
+.email {
+    color: #fff;
+}
+
 .menu-icon {
     width: 28px;
     margin-left: 20px;
