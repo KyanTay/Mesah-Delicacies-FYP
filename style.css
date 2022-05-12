@@ -300,19 +300,23 @@ ul {
         overflow: hidden;
         transition: max-height 0.5s;
     }
+
     nav ul li {
         display: block;
         margin-right: 50px;
         margin-top: 10px;
         margin-bottom: 10px;
     }
+
     nav ul li a {
         color: #fff;
     }
+
     .menu-icon {
         display: block;
         cursor: pointer;
     }
+
     .footer-col {
         width: 50%;
         margin-bottom: 30px;
@@ -326,11 +330,13 @@ ul {
     .row {
         text-align: center;
     }
+
     .col-2,
     .col-3,
     .col-4 {
         flex-basis: 100%;
     }
+
     .footer-col {
         width: 100%;
     }
@@ -340,7 +346,7 @@ ul {
 /*CONTACT US*/
 
 .contact {
-    font-family: "Lilita One", sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-align: center;
     font-size: 40px;
     color: black;
