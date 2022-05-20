@@ -288,6 +288,16 @@ ul {
     display: none;
 }
 
+.inputD {
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    border: 2px solid #ff523b;
+    color: white;
+    background: transparent;
+    font-size: 15px;
+}
+
 
 /*MENU*/
 
@@ -323,6 +333,61 @@ select:focus {
 .page-btn span:hover {
     background: #ff523b;
     color: #fff;
+}
+
+
+/*Food Details*/
+
+.food-items {
+    margin-top: 80px;
+}
+
+.food-items .col-2 img {
+    padding: 0;
+}
+
+.food-items .col-2 {
+    padding: 20px;
+}
+
+.food-items h4 {
+    margin: 20px 0;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.food-items select {
+    display: block;
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid #ff523b;
+}
+
+.food-items input {
+    width: 50px;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 20px;
+    margin-right: 10px;
+    border: 1px solid #ff523b;
+}
+
+input:focus {
+    outline: none;
+}
+
+.small-img-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.small-img-col {
+    flex-basis: 24%;
+    cursor: pointer;
+}
+
+.ViewMore {
+    cursor: pointer;
 }
 
 
@@ -372,6 +437,16 @@ select:focus {
     .footer-col {
         width: 100%;
     }
+    .food-items .row {
+        text-align: left;
+    }
+    .food-items .col-2 {
+        padding: 20px 0;
+    }
+    .food-items h1 {
+        font-size: 26px;
+        line-height: 30px;
+    }
 }
 
 
@@ -408,7 +483,7 @@ form {
     position: relative;
 }
 
-input,
+.inputC,
 textarea {
     width: 100%;
     padding: 10px;
