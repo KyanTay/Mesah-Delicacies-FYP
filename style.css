@@ -528,3 +528,7 @@ textarea:valid~label {
     top: -35px;
     color: black;
 }
+
+.Background{
+    background-image: url("images/LeafBackground.jpg");
+}

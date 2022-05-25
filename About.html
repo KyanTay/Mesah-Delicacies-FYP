@@ -8,8 +8,7 @@
     <title>Mesah Delicacies - Home</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 	<style>
 * {box-sizing: border-box}
 body {font-family: Verdana, sans-serif; margin:0}
@@ -31,7 +30,7 @@ img {vertical-align: middle;}
   width: auto;
   padding: 16px;
   margin-top: -22px;
-  color: white;
+  color: black;
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
@@ -109,10 +108,14 @@ h2 {
 .story {
   text-align: center;
 }
+
+.header{
+    background-image: url("images/LeafBackground.jpg");
+}
 </style>
 </head>
 
-<body>
+<body class="Background">
     <div class="header">
         <div class="container">
             <div class="navbar">
@@ -133,48 +136,49 @@ h2 {
             </div>
         </div>
     </div>
+
 	<h2>OUR STORY</h2>
 	<br/>
 	<div class="story">
-	  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
-	  <p>labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
-	  <p>laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</p>
-	  <p>voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat</p>
-	  <p>non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-    </div>
+		  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut</p>
+		  <p>labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
+		  <p>laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</p>
+		  <p>voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat</p>
+		  <p>non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+		</div>
 	<br/>
-<h2>Testimonials</h2>
-<br/>
-<div class="slideshow-container">
+	<h2>Testimonials</h2>
+	<br/>
+	<div class="slideshow-container">
 
-		<div class="mySlides fade">
-		  <img src="images/testimony1.png" style="width:100%">
-		  <div class="text">Mr Celab</div>
-		</div>
+				<div class="mySlides fade">
+				  <img src="images/testimony1.png" style="width:100%">
+				  <div class="text">Mr Celab</div>
+				</div>
 
-		<div class="mySlides fade">
-		  <img src="images/placeholder1.png" style="width:100%">
-		  <div class="text">Ms Celab</div>
-		</div>
+				<div class="mySlides fade">
+				  <img src="images/placeholder1.png" style="width:100%">
+				  <div class="text">Ms Celab</div>
+				</div>
 
-		<div class="mySlides fade">
-		  <img src="images/placeholder1.png" style="width:100%">
-		  <div class="text">Dr Celab</div>
-		</div>
+				<div class="mySlides fade">
+				  <img src="images/placeholder1.png" style="width:100%">
+				  <div class="text">Dr Celab</div>
+				</div>
 
-		<a class="prev" onclick="plusSlides(-1)">❮</a>
-		<a class="next" onclick="plusSlides(1)">❯</a>
+				<a class="prev" onclick="plusSlides(-1)">❮</a>
+				<a class="next" onclick="plusSlides(1)">❯</a>
 
-	</div>
-<br>
-
+			</div>
+	<br>
+		
 	<div style="text-align:center">
-	  <span class="dot" onclick="currentSlide(1)"></span> 
-	  <span class="dot" onclick="currentSlide(2)"></span> 
-	  <span class="dot" onclick="currentSlide(3)"></span> 
-	</div>
-
-<script>
+		  <span class="dot" onclick="currentSlide(1)"></span> 
+		  <span class="dot" onclick="currentSlide(2)"></span> 
+		  <span class="dot" onclick="currentSlide(3)"></span> 
+		</div>
+		
+	<script>
 	let slideIndex = 1;
 	showSlides(slideIndex);
 
@@ -203,6 +207,7 @@ h2 {
 	}
 	</script>
 
+	
     <footer class="footer">
         <div class="container-foot">
             <div class="row-foot">
