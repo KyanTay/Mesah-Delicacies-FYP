@@ -7,6 +7,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
+    background-image: url("images/LeafBackground.jpg");
 }
 
 .navbar {
@@ -298,8 +299,6 @@ ul {
     font-size: 15px;
 }
 
-/*RESPONSIVE FOR MENU fOR 800*/
-
 @media only screen and (max-width: 800px) {
     nav ul {
         position: absolute;
@@ -357,152 +356,19 @@ ul {
 }
 
 
-/* Log in */
-.registerHeader{
-    background-color: none;
-}
+/*Shopping cart*/
 
-.LoginBackground{
-    background-image: url("images/LeafBackground.jpg");
-}
-
-.LoginBox{
-    width: 500px;
-    height: 500px;
-    background-color: #FFFFFF;
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
-
-.loginTitle{
-   text-decoration: underline black 2px ;
-   text-align: center;
-}
-
-#Login{
-    text-align: center;
-    font-size: 28px;
-}
-
-#Register{
-    text-align: center;
-    font-size: 28px;
-}
-
-.formTitle{
-    text-align: center;
-    font-size: 30px;
-    font-weight: lighter;
-}
-
-#LoginEmail{
-    width: 400px;
-}
-
-#LoginPassword{
-    width:400px;
-}
-
-.LoginForm{
-    margin-left: 100px;
-}
-
-.forgotPassword{
-    margin-top: 10px;
-    margin-left: 51px;
-    font-size: 12px;
-    font-weight: bold;
-    text-decoration: underline black 2px;
-}
-
-#checkboxRow{
-    margin-top: 10px;
-    margin-left: 38px;
-}
-
-.loginButton{
-    background-color: #FFFFFF;
-    width: 320px;
-    font-size: 40px;
-    margin-top: 50px;
-    margin-left: auto;
-    margin-right: auto;
-    display:block
-}
-
-.TOStext{
-    text-align: center;
-    font-size: 12px;
-    width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
-
-.formLoginButton{
-    background-color: lightgreen;
-    width: 110.5%;
-    border-left: none;
-    border-top: none;
-}
-
-.formRegisterbutton{
-    background-color: lightgreen;
-    width: 100%;
-    border-left: none;
-    border-right: none;
-    border-top: none;
-}
-
-.loginSpacingBetween{
-    height: 100px;
-}
-
-/* Register */
-.registerBackground{
-    background-image: url("images/LeafBackground.jpg");
-}
-
-.registerBox{
-    width: 500px;
+.topBox{
     height: auto;
-    background-color: #FFFFFF;
-    margin-top: 100px;
+    width: auto;
+    background-color: white;
+    margin-top: 35px;
     margin-left: auto;
     margin-right: auto;
     display: block;
+    border-style: solid;
 }
 
-#flName{
-    margin-right: 100px;
+#selectAllBtn{
+    align-self: flex-start;
 }
-
-
-#registerEmail{
-    width: 400px;
-}
-
-#registerPassword{
-    width:400px;
-}
-
-#registerContact{
-    width:400px;
-}
-
-#registerHomeAddress{
-    width:400px;
-}
-
-.regInformation{
-    font-weight: bold;
-    font-size: 12px;
-    width: 400px;
-}
-
-.registrerSpacingBetween{
-    height: 100px;
-}
-
