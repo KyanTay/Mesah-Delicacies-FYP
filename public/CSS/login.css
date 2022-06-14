@@ -506,3 +506,13 @@ ul {
     height: 100px;
 }
 
+.registerButton{
+    background-color: #FFFFFF;
+    width: 320px;
+    font-size: 40px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display:block
+}
+
