@@ -12,7 +12,8 @@ body {
     font-size: 17px;
     max-width: 100%;
     overflow-x: hidden;
-    background-image: url("images/LeafBackground.jpg");
+    background-image: url("../images/LeafBackground.jpg");
+
 }
 
 * {
@@ -135,6 +136,9 @@ span.price {
     color: grey;
 }
 
+
+
+
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
 @media (max-width: 800px) {
     .row {
@@ -144,7 +148,41 @@ span.price {
     .col-25 {
         margin-bottom: 20px;
     }
+
+    nav ul {
+        position: absolute;
+        top: 85px;
+        left: 0;
+        background: #333;
+        width: 100%;
+        overflow: hidden;
+        transition: max-height 0.5s;
+    }
+
+    nav ul li {
+        display: block;
+        margin-right: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    nav ul li a {
+        color: #fff;
+    }
+
+    .menu-icon {
+        display: block;
+        cursor: pointer;
+    }
+
+    .footer-col {
+        width: 50%;
+        margin-bottom: 30px;
+    }
+    
 }
+
+
 
 .navbar {
     display: flex;
@@ -178,9 +216,7 @@ a {
     display: none;
 }
 
-.header {
-    background: radial-gradient(#fff, #ffd6d6);
-}
+
 
 
 .navbarcontainer {
@@ -188,6 +224,7 @@ a {
     margin: auto;
     padding-left: 25px;
     padding-right: 25px;
+    
 }
 
 .footer {
