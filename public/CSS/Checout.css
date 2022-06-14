@@ -10,7 +10,7 @@ body {
     font-family: Arial;
     font-size: 17px;
     padding: 8px;
-    background-image: url("images/LeafBackground.jpg");
+    background-image: url("../images/LeafBackground.jpg");
 }
 
 * {

@@ -530,5 +530,5 @@ textarea:valid~label {
 }
 
 .Background{
-    background-image: url("images/LeafBackground.jpg");
+    background-image: url("../images/LeafBackground.jpg");
 }

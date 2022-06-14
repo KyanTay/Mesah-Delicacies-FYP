@@ -1,0 +1,26 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": {
+    "public": "public",
+    "redirects":[
+      {
+        "source":"/index.html",
+        "destination":"home.html", 
+        "type": 301
+      },
+      {
+        "source": "/",
+        "destination": "/home.html",
+        "type": 301
+      }
+    ],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

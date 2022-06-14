@@ -363,7 +363,7 @@ ul {
 }
 
 .LoginBackground{
-    background-image: url("images/LeafBackground.jpg");
+    background-image: url("../images/LeafBackground.jpg");
 }
 
 .LoginBox{
@@ -462,7 +462,7 @@ ul {
 
 /* Register */
 .registerBackground{
-    background-image: url("images/LeafBackground.jpg");
+    background-image: url("../images/LeafBackground.jpg");
 }
 
 .registerBox{
