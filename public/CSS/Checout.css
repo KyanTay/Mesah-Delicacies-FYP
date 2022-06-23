@@ -7,7 +7,6 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    font-size: 17px;
     max-width: 100%;
     overflow-x: hidden;
     background-image: url("../images/LeafBackground.jpg");
@@ -61,13 +60,7 @@ body {
     padding-left: 30px;
 }
 
-input[type=text] {
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
+
 
 label {
     margin-bottom: 10px;
@@ -132,6 +125,7 @@ nav ul {
 nav ul li {
     display: inline-block;
     margin-right: 20px;
+
 }
 
 a {
@@ -311,4 +305,26 @@ ul {
         font-size: 26px;
         line-height: 30px;
     }
+}
+.navbarcontainer {
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+    
+}
+input[type=text] {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.inputD {
+    width: 100%;
+    padding: 10px;
+    outline: 0;
+    color: white;
+    background: transparent;
+    font-size: 15px;
 }
