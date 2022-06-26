@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
-
 * {
     margin: 0;
     padding: 0;
@@ -301,7 +300,6 @@ ul {
 }
 
 
-
 /*MENU*/
 
 .row-2 {
@@ -406,23 +404,19 @@ input:focus {
         overflow: hidden;
         transition: max-height 0.5s;
     }
-
     nav ul li {
         display: block;
         margin-right: 50px;
         margin-top: 10px;
         margin-bottom: 10px;
     }
-
     nav ul li a {
         color: #fff;
     }
-
     .menu-icon {
         display: block;
         cursor: pointer;
     }
-
     .footer-col {
         width: 50%;
         margin-bottom: 30px;
@@ -436,25 +430,20 @@ input:focus {
     .row {
         text-align: center;
     }
-
     .col-2,
     .col-3,
     .col-4 {
         flex-basis: 100%;
     }
-
     .footer-col {
         width: 100%;
     }
-
     .food-items .row {
         text-align: left;
     }
-
     .food-items .col-2 {
         padding: 20px 0;
     }
-
     .food-items h1 {
         font-size: 26px;
         line-height: 30px;
@@ -462,7 +451,7 @@ input:focus {
 }
 
 
-/*CONTACT US*/
+/*CONTACT US
 
 .contact {
     font-family: 'Poppins', sans-serif;
@@ -540,8 +529,8 @@ textarea:valid~label {
     top: -35px;
     color: black;
 }
+*/
 
 .Background {
     background-image: url("../images/LeafBackground.jpg");
 }
-
