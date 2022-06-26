@@ -328,3 +328,6 @@ input[type=text] {
     background: transparent;
     font-size: 15px;
 }
+.email {
+    color: #fff;
+}

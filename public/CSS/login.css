@@ -292,12 +292,10 @@ ul {
     width: 100%;
     padding: 10px;
     outline: 0;
-    border: 2px solid #ff523b;
     color: white;
     background: transparent;
     font-size: 15px;
 }
-
 /*RESPONSIVE FOR MENU fOR 800*/
 
 @media only screen and (max-width: 800px) {
