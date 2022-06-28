@@ -392,6 +392,89 @@ input:focus {
 }
 
 
+/*Cart Details*/
+
+.cart-page {
+    margin: 80px auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-info {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+th {
+    text-align: left;
+    padding: 5px;
+    color: #fff;
+    background: #ff523b;
+    font-weight: normal;
+}
+
+td {
+    padding: 10px 5px;
+}
+
+td input {
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+}
+
+td a {
+    color: #ff523b;
+    font-size: 12px;
+}
+
+td img {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+
+.total-price {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.total-price table {
+    border-top: 3px solid #ff523b;
+    width: 100%;
+    max-width: 400px;
+}
+
+td:last-child {
+    text-align: right;
+}
+
+th:last-child {
+    text-align: right;
+}
+
+.btn-cart {
+    display: inline-block;
+    background: #ff523b;
+    color: #fff;
+    padding: 13px 160px;
+    margin: 10px 0;
+    border-radius: 20px;
+    transition: ease-in-out, 0.5s;
+}
+
+.btn-cart:hover {
+    background: #563434;
+}
+
+.checkout-btn {
+    text-align: right;
+}
+
+
 /*RESPONSIVE FOR MENU fOR 800*/
 
 @media only screen and (max-width: 800px) {
@@ -448,88 +531,10 @@ input:focus {
         font-size: 26px;
         line-height: 30px;
     }
+    .cart-info p {
+        display: none;
+    }
 }
-
-
-/*CONTACT US
-
-.contact {
-    font-family: 'Poppins', sans-serif;
-    text-align: center;
-    font-size: 40px;
-    color: black;
-    text-decoration: none;
-}
-
-.q {
-    font-size: 40px;
-}
-
-.contactForm {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-form {
-    font-family: "Montserrat", sans-serif;
-    font-size: 15px;
-    margin-top: 50px;
-    width: 90%;
-    max-width: 600px;
-}
-
-.formContact {
-    margin-bottom: 0px;
-    position: relative;
-}
-
-.inputC,
-textarea {
-    width: 100%;
-    padding: 10px;
-    outline: 0;
-    border: 2px solid black;
-    color: black;
-    background: transparent;
-    font-size: 15px;
-}
-
-label {
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    padding: 10px;
-    color: black;
-    cursor: text;
-    transition: 0.2s;
-}
-
-.formBtn {
-    padding: 10px 0;
-    color: black;
-    outline: none;
-    background: transparent;
-    border: 2px solid black;
-    width: 100%;
-    cursor: pointer;
-    margin-right: 200px;
-    transition: 0.3s ease-in-out;
-}
-
-.formBtn:hover {
-    background: turquoise;
-}
-
-input:focus~label,
-input:valid~label,
-textarea:focus~label,
-textarea:valid~label {
-    top: -35px;
-    color: black;
-}
-*/
 
 .Background {
     background-image: url("../images/LeafBackground.jpg");
