@@ -1,5 +1,24 @@
 {
   "dependencies": {
-    "firebase": "^9.8.3"
-  }
+    "firebase": "^9.8.4"
+  },
+  "name": "mesah-delicacies-fyp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KyanTay/Mesah-Delicacies-FYP.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KyanTay/Mesah-Delicacies-FYP/issues"
+  },
+  "homepage": "https://github.com/KyanTay/Mesah-Delicacies-FYP#readme",
+  "devDependencies": {},
+  "keywords": [],
+  "description": ""
 }

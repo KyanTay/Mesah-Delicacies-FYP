@@ -7,10 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="CSS/login.css">
+    <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <script type="module" src="JS/firebaseConfig.js"></script>
-    <script type="module" src="JS/Register.js"></script>
+    <script type="module" src="modules/Register.js"></script>
 </head>
 
 <body class="LoginBackground">
@@ -73,7 +72,7 @@
                 <div class="regInformation">Information regarding your account, orders or delivery address will be sent to this address. Please ensure it is correctly entered.</div>
             </form>
         </div>
-        <div><button class="registerButton" onClick="registerUser()">Register</button></div>
+        <div><button class="registerButton" id="registerBtn">Register</button></div>
         <div class="TOStext">By creating your account or signing in, you agree to our Terms and Conditions & Privacy Policy
         </div>
     </div>

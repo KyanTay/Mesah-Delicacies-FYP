@@ -2,8 +2,10 @@
 // import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-analytics.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
+import { collection, getDocs, addDoc, Timestamp } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js'
+import { query, orderBy, limit, where, onSnapshot } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
 // https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,4 +24,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 const analytics = getAnalytics(app);
