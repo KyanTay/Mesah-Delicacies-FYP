@@ -474,6 +474,12 @@ th:last-child {
     text-align: right;
 }
 
+.left-arrow {
+    color: #ff523b;
+    position: relative;
+    left: 30px;
+}
+
 
 /*RESPONSIVE FOR MENU fOR 800*/
 
