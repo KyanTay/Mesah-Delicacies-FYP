@@ -1,9 +1,10 @@
-//Importing features from firebase
+// Importing features from firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js";
 import { getFirestore, collection, doc, getDocs, addDoc, setDoc } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js"
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, browserLocalPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js"
 
-//Firebase required infomation
+// Firebase required infomation
+// IMPORTANT DO NOT TOUCH ANYTHING IN FIREBASECONFIG
 const firebaseConfig = {
   apiKey: "AIzaSyD328i_7KXj07q2iVxQaW02U1MUozJv6I8",
   authDomain: "mesha-delicacies.firebaseapp.com",
@@ -19,9 +20,11 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
+// Export is to use features that other scripts will require. 
 export { app }; //App
 export { db, collection, doc, getDocs, addDoc, setDoc }; //Firestore Related
 export { auth, signInWithEmailAndPassword, createUserWithEmailAndPassword, browserLocalPersistence, browserSessionPersistence }; //Register & Login Related
+
 
 var user = auth.currentUser;
 

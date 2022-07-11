@@ -1,5 +1,7 @@
-import { auth, signInWithEmailAndPassword, browserLocalPersistence, browserSessionPersistence } from "../main.js";
+// Importing features 
+import { auth, signInWithEmailAndPassword, browserLocalPersistence, browserSessionPersistence } from "../main.js"; 
 
+// Get button ID
 document.getElementById('loginBtn').addEventListener('click', login);
 
 function login() {
