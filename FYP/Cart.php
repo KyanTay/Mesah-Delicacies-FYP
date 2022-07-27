@@ -82,7 +82,7 @@ session_start();
                 </div>
                 <nav>
                     <ul id="MenuItems">
-                        <li><a href="home.html">Home</a></li>
+                        <li><a href="home.php">Home</a></li>
                         <li><a href="Menu.php">Menu</a>
                             <ul>
                                 <li><a href="MenuMD.php">Main Dish</a></li>
