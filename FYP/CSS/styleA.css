@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.Background {
+    background-image: url("../images/LeafBackground.jpg");
+}
+
+.hero {
+    height: 100%;
+    width: 100%;
+    background-position: center;    
+    background-size: cover;
+    position: absolute;
+}
+
+.form-box {
+    width: 380px;
+    height: 480px;
+    position: relative;
+    margin: 6% auto;
+    background: #fff;
+    padding: 5px;
+}
+
+button-box
+
+
+
+
+
+
+
+.menu-icon {
+    width: 28px;
+    margin-left: 20px;
+    display: none;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+nav {
+    flex: 1;
+    text-align: right;
+}
+
+nav ul {
+    display: inline-block;
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 30px;
+    margin-left: 0px;
+}
+
+nav li ul {
+    display: block;
+    position: absolute;
+    text-align: left;
+    padding: 3px 0;
+    top: 50%;
+    opacity: 0;
+    width: auto;
+    min-width: 100%;
+    visibility: hidden;
+    z-index: 1;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    transition: all .25s ease;
+}
+
+nav li:hover ul {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+}
+
+nav li ul li {
+    white-space: nowrap;
+    padding: 3px 0;
+}
+
+nav li ul a:hover {
+    background: #bbb;
+}
+
+nav li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    color: #555;
+}
+
+p {
+    color: #555;
+}
+
+.container {
+    max-width: 1300px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+/*RESPONSIVE FOR MENU fOR 800*/
+
+@media only screen and (max-width: 800px) {
+    nav ul {
+        position: absolute;
+        top: 85px;
+        left: 0;
+        background: #333;
+        width: 100%;
+        overflow: hidden;
+        transition: max-height 0.5s;
+    }
+    nav ul li {
+        display: block;
+        margin-right: 50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    nav ul li a {
+        color: #fff;
+    }
+    .menu-icon {
+        display: block;
+        cursor: pointer;
+    }
+    .footer-col {
+        width: 50%;
+        margin-bottom: 30px;
+    }
+}
+
+
+/*RESPONSIVE FOR WEB fOR 600*/
+
+@media only screen and (max-width: 600px) {
+    .row {
+        text-align: center;
+    }
+    .col-2,
+    .col-3,
+    .col-4 {
+        flex-basis: 100%;
+    }
+    .footer-col {
+        width: 100%;
+    }
+    .food-items .row {
+        text-align: left;
+    }
+    .food-items .col-2 {
+        padding: 20px 0;
+    }
+    .food-items h1 {
+        font-size: 26px;
+        line-height: 30px;
+    }
+    .cart-info p {
+        display: none;
+    }
+}
