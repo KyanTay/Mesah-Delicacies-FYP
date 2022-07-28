@@ -63,6 +63,20 @@
             }
             );
         </script>
+        <script>
+           function showQR(){
+                var image = document.getElementById('qrImage');
+                var payNow = document.getElementById('payNow');
+                var cash = document.getElementById('cash');
+   
+                if(payNow.checked && image.style.display === "none"){
+                     image.style.display = "block";
+                }
+                else if(cash.checked && image.style.display === "block"){
+                image.style.display = "none";
+                }
+            }
+        </script>
     </head>
 
     <body>
@@ -117,11 +131,13 @@
                             <i class="fa fa-money" style="color:blue;"></i>
                         </div>
                         <label for="payment">Payment method</label>
-                        <input type="radio" id="payNow" name="paymentMethod" placeholder="PAYNOW">Paynow
-                        <input type="radio" id="cash" name="paymentMethod" placeholder="Cash">Cash
+                        <input type="radio" id="payNow" name="paymentMethod" placeholder="PAYNOW" value="paynow" onclick='showQR()'>Paynow
+                        <input type="radio" id="cash" name="paymentMethod" placeholder="Cash" value="cash" onclick="showQR()">Cash
                         <br>
                         <br>
-
+                        <div id='qr'>
+                            <img src="images/Kyan's paynow QR.jpg" style='display:none' id="qrImage" alt="QR Code">
+                        </div>
                         <label for="ccnum">Message:</label>
                         <input type="text" id="ccnum" name="cardnumber" placeholder="Happy birthday to ....">
 
@@ -206,7 +222,5 @@
                 }
             }
         </script>
-
     </body>
-
 </html>

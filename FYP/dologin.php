@@ -48,7 +48,7 @@ if (mysqli_num_rows($resultCheck) == 1) {
             <p class="lead">Sorry, you must enter a valid username and password to log in.</p>
             <hr class="my-4" style="background-color: white;">
             <p>Click on the button to go back to the Login page.</p>
-            <a href="Register.php" class="btn btn-outline-success btn-lg" role="login_back_button">Go Back</a>
+            <a href="Account.php" class="btn btn-outline-success btn-lg" role="login_back_button">Go Back</a>
         </div>
 
     </body>
