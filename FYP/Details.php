@@ -6,6 +6,9 @@ include "dbFunction.php";
 
 $food_ID = $_POST['foodid'];
 
+if (isset($_SESSION['user_id'])) {
+    $username = $_SESSION['username'];
+}
 
 $queryCheck = "SELECT * FROM fooditem WHERE FoodID = '$food_ID'";
 
@@ -34,19 +37,45 @@ if (mysqli_num_rows($resultCheck) == 1) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Mesah Delicacies - Menu</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="CSS/style.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" type="text/javascript"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"
-              />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "getReadingDetails.php",
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+                        var table = "";
+                        for (i = 0; i < response.length; i++) {
+                            table += "<form " + "class='col-4'" + "action='Details.php'method='post'" + ">" +
+                                    "<input class='inputFood' id='foodid' name='foodid' value='" + response[i].FoodID + "'>" +
+                                    "<img src='images/" + response[i].Image + "'>" +
+                                    "<h4>" + response[i].FoodName + "</h4>" +
+                                    "<p>$" + response[i].Price + "</p>" +
+                                    "<button type='submit'class='btnMenu'>Shop Now</button>" +
+                                    "</form>";
+                            $(".menuFF").html(table);
+                        }
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });
+            });
+        </script>
     </head>
 
     <body class="Background">
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <a href="home.php"><img src="images/banana.png" width="63px"></a>
+                    <a href="home.php"><img src="images/MDLogo.svg" width="63px"></a>
                 </div>
                 <nav>
                     <ul id="MenuItems">
@@ -54,7 +83,16 @@ if (mysqli_num_rows($resultCheck) == 1) {
                         <li><a href="Menu.php">Menu</a></li>
                         <li><a href="About.php">About</a></li>
                         <li><a href="Contact.php">Contact</a></li>
-                        <li><a href="Account.php">Profile</a></li>
+                        <?php
+                        if (isset($_SESSION['user_id'])) {
+                            ?>
+                            <li><a href="Profile.php"><?php echo $username ?></a></li>
+                        <?php } else {
+                            ?>
+                            <li><a href="Account.php">Login/Register</a></li>
+                            <?php
+                        }
+                        ?>
                     </ul>
                 </nav>
                 <a href="Cart.php"><img src="images/cart.png" width="30px" height="30px"></a>
@@ -72,7 +110,7 @@ if (mysqli_num_rows($resultCheck) == 1) {
                     <p>Menu/Main Dish</p>
                     <h1><?php echo $food_nameD ?></h1>
                     <h4>$<?php echo $food_priceD ?></h4>
-                    <h3>Quantity:</h3>                   
+                    <h3>Quantity:</h3>
                     <input type="number" value="1" id="quantity" name="quantity">
                     <button class="btnCart" type="submit">Add to Cart</button>
                     <h3>Product Details</h3>
@@ -85,61 +123,14 @@ if (mysqli_num_rows($resultCheck) == 1) {
         <div class="small-container">
             <div class="row row-2">
                 <h2>Related Dishes</h2>
-                <a class="ViewMore" href="#">View More</a>
+                <a class="ViewMore" href="Menu.php">View More</a>
             </div>
         </div>
 
         <!--Other food items-->
         <div class="small-container">
             <div class="row">
-                <div class="col-4">
-                    <img src="images/food.jpeg">
-                    <h4>PRODUCT NAME</h4>
-                    <div class="ratings">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
-                <div class="col-4">
-                    <img src="images/food.jpeg">
-                    <h4>PRODUCT NAME</h4>
-                    <div class="ratings">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
-                <div class="col-4">
-                    <img src="images/food.jpeg">
-                    <h4>PRODUCT NAME</h4>
-                    <div class="ratings">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
-                <div class="col-4">
-                    <img src="images/food.jpeg">
-                    <h4>PRODUCT NAME</h4>
-                    <div class="ratings">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
+                <div class="row menuFF"></div>
             </div>
         </div>
 
@@ -168,10 +159,8 @@ if (mysqli_num_rows($resultCheck) == 1) {
                     <div class="footer-col">
                         <h4>social media</h4>
                         <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.facebook.com/MesahwithDelicacies/" target="_blank"><i class="fab fa-facebook-f"></i></a>  
+                            <a href="https://www.instagram.com/mesahdelicacies/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="footer-col">

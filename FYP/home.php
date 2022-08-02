@@ -5,10 +5,8 @@
  */
 session_start();
 
-if (!isset($_SESSION['email']) && empty($_SESSION['email'])) {
-    header("Location: Account.php");
-} else {
-    
+if (isset($_SESSION['user_id'])) {
+    $username = $_SESSION['username'];
 }
 ?>
 
@@ -21,32 +19,65 @@ if (!isset($_SESSION['email']) && empty($_SESSION['email'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="test">
         <title>Mesah Delicacies - Home</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="CSS/style.css">
         <script type="module" src="main.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer"
-              />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script>
+            $(document).ready(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "getReadingDetails.php",
+                    cache: false,
+                    dataType: "JSON",
+                    success: function (response) {
+                        var table = "";
+                        for (i = 0; i < response.length; i++) {
+                            table += "<form " + "class='col-4'" + "action='Details.php'method='post'" + ">" +
+                                    "<input class='inputFood' id='foodid' name='foodid' value='" + response[i].FoodID + "'>" +
+                                    "<img src='images/" + response[i].Image + "'>" +
+                                    "<h4>" + response[i].FoodName + "</h4>" +
+                                    "<p>$" + response[i].Price + "</p>" +
+                                    "<button type='submit'class='btnMenu'>Shop Now</button>" +
+                                    "</form>";
+
+                            $(".menuFF").html(table);
+                        }
+                    },
+                    error: function (obj, textStatus, errorThrown) {
+                        console.log("Error " + textStatus + ": " + errorThrown);
+                    }
+                });
+            });
+        </script>
     </head>
 
-    <body>
+    <body class="Background">
         <div class="header">
             <div class="container">
                 <div class="navbar">
                     <div class="logo">
-                        <a href="home.php"><img src="images/banana.png" width="63px"></a>
+                        <a href="home.php"><img src="images/MDLogo.svg" width="63px"></a>
                     </div>
                     <nav>
                         <ul id="MenuItems">
                             <li><a href="home.php">Home</a></li>
                             <li><a href="Menu.php">Menu</a>
-                                <ul>
-                                    <li><a href="MenuMD.php">Main Dish</a></li>
-                                    <li><a href="MenuAO.php">Add On</a></li>
-                                </ul>
                             </li>
                             <li><a href="About.php">About</a></li>
                             <li><a href="Contact.php">Contact</a></li>
-                            <li><a href="Account.php">Profile</a></li>
+                            <?php
+                            if (isset($_SESSION['user_id'])) {
+                                ?>
+                                <li><a href="Profile.php"><?php echo $username ?></a></li>
+                            <?php } else {
+                                ?>
+                                <li><a href="Account.php">Login/Register</a></li>
+                                <?php
+                            }
+                            ?>
                         </ul>
                     </nav>
                     <a href="Cart.php"><img src="images/cart.png" width="30px" height="30px"></a>
@@ -54,9 +85,9 @@ if (!isset($_SESSION['email']) && empty($_SESSION['email'])) {
                 </div>
                 <div class="row">
                     <div class="col-2">
-                        <h1>TAGLINE</h1>
-                        <p>MESSAGE</p>
-                        <a href="Menu.html" class="btn">Shop Now</a>
+                        <h1>Mesah Food</h1>
+                        <p>Traditional Malay Food</p>
+                        <a href="Menu.php" class="btn">Shop Now</a>
                     </div>
                     <div class="col-2">
                         <img src="images/banana.png">
@@ -65,17 +96,13 @@ if (!isset($_SESSION['email']) && empty($_SESSION['email'])) {
             </div>
         </div>
 
-
-        <div class="categories">
-            <div class="small-container">
+        <div class="small-container">
+            <div class="categories">
+                <h2 class="title">Food Of The Week</h2>
                 <div class="row">
                     <div class="col-3">
-                        <img src="images/food.jpeg">
-                        <a href="Menu.php" class="btn-col">Main Dish</a>
-                    </div>
-                    <div class="col-3">
-                        <img src="images/food.jpeg">
-                        <a href="Menu.php" class="btn-col">Add Ons</a>
+                        <img src="images/homefood.jpg">
+                        <a href="Menu.php" class="btn-col">View More</a>
                     </div>
                 </div>
             </div>
@@ -85,54 +112,7 @@ if (!isset($_SESSION['email']) && empty($_SESSION['email'])) {
         <div class="small-container">
             <h2 class="title">Featured Products</h2>
             <div class="row">
-                <div class="col-4">
-                    <img src="images/food.jpeg">
-                    <h4>PRODUCT NAME</h4>
-                    <div class="ratings">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
-                <div class="col-4">
-                    <img src="images/food.jpeg">
-                    <h4>PRODUCT NAME</h4>
-                    <div class="ratings">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
-                <div class="col-4">
-                    <img src="images/food.jpeg">
-                    <h4>PRODUCT NAME</h4>
-                    <div class="ratings">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
-                <div class="col-4">
-                    <img src="images/food.jpeg">
-                    <h4>PRODUCT NAME</h4>
-                    <div class="ratings">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p>$50.00</p>
-                </div>
+                <div class="row menuFF"></div>
             </div>
         </div>
 
@@ -161,10 +141,8 @@ if (!isset($_SESSION['email']) && empty($_SESSION['email'])) {
                     <div class="footer-col">
                         <h4>social media</h4>
                         <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.facebook.com/MesahwithDelicacies/" target="_blank"><i class="fab fa-facebook-f"></i></a>  
+                            <a href="https://www.instagram.com/mesahdelicacies/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="footer-col">

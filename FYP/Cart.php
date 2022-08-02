@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php
 session_start();
+
+if (isset($_SESSION['user_id'])) {
+    $username = $_SESSION['username'];
+}
 ?>
 <html lang="en">
 
@@ -9,7 +13,7 @@ session_start();
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Mesah Delicacies - Menu</title>
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="CSS/style.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" type="text/javascript"></script>
@@ -39,7 +43,6 @@ session_start();
                             }
 
                             subtotal += subtotalC;
-                            total = subtotal + delivery;
 
                             table += "<tr>"
                                     + "<td>"
@@ -54,12 +57,13 @@ session_start();
                                     + "</form>"
                                     + "</div>"
                                     + "</td>"
-                                    + "<td><input type='number' value='" + response[i].Quantity + "'></td>"
+                                    + "<td>" + response[i].Quantity + "</td>"
                                     + "<td>$" + subtotalC + "</td>"
                                     + "</tr>";
 
                             $(".cartItemInsert").html(table);
                         }
+                        total = subtotal + delivery;
                         subtotalT += "$" + subtotal;
                         totalT += "$" + total;
                         $(".cartItemInsertST").html(subtotalT);
@@ -78,20 +82,24 @@ session_start();
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <a href="home.php"><img src="images/banana.png" width="63px"></a>
+                    <a href="home.php"><img src="images/MDLogo.svg" width="63px"></a>
                 </div>
                 <nav>
                     <ul id="MenuItems">
                         <li><a href="home.php">Home</a></li>
-                        <li><a href="Menu.php">Menu</a>
-                            <ul>
-                                <li><a href="MenuMD.php">Main Dish</a></li>
-                                <li><a href="MenuAO.php">Add On</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="Menu.php">Menu</a></li>
                         <li><a href="About.php">About</a></li>
                         <li><a href="Contact.php">Contact</a></li>
-                        <li><a href="Account.php">Profile</a></li>
+                        <?php
+                        if (isset($_SESSION['user_id'])) {
+                            ?>
+                            <li><a href="Profile.php"><?php echo $username ?></a></li>
+                        <?php } else {
+                            ?>
+                            <li><a href="Account.php">Login/Register</a></li>
+                            <?php
+                        }
+                        ?>
                     </ul>
                 </nav>
                 <a href="Cart.php"><img src="images/cart.png" width="30px" height="30px"></a>
@@ -113,7 +121,7 @@ session_start();
                 <table>
                     <tr>
                         <td>Subtotal</td>
-                    <td class="cartItemInsertST"></td>
+                        <td class="cartItemInsertST"></td>
                     </tr>
                     <tr>
                         <td>Delivery Fee</td>
@@ -121,7 +129,7 @@ session_start();
                     </tr>
                     <tr>
                         <td>Total</td>
-                    <td class="cartItemInsertT"></td>
+                        <td class="cartItemInsertT"></td>
                     </tr>
                 </table>
             </div>
@@ -155,10 +163,8 @@ session_start();
                     <div class="footer-col">
                         <h4>social media</h4>
                         <div class="social-links">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.facebook.com/MesahwithDelicacies/" target="_blank"><i class="fab fa-facebook-f"></i></a>  
+                            <a href="https://www.instagram.com/mesahdelicacies/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="footer-col">

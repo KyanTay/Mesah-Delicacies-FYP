@@ -26,13 +26,19 @@ if (mysqli_num_rows($resultCheck) == 1) {
     $_SESSION['contact'] = $row['Contact'];
     $_SESSION['address'] = $row['Address'];
     $_SESSION['fullname'] = $row['FullName'];
+    $_SESSION['phoneno'] = $row['Contact'];
+    $_SESSION['usertype'] = $row['usertype'];
     
     if($row['usertype'] == "admin") {
-        header("Location: adminPage/adminMain.php");
+        header("Location: secondadminLogin.php");
     } else if ($row['usertype'] == "user") {
-        header("Location: home.php");
+        header("Location: UserloginMsg.php");
     }
 }
+else{
+    header("Location: Passwordemailinccorect.php");
+}
+
 
 ?>
 <html>

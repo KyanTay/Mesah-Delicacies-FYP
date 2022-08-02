@@ -15,9 +15,8 @@ mysqli_query($link, $sql);
 
 if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
     $msg = "image Uploaded Successfully";
+    header("Location: secondadminadd.php");
 } else {
     $msg = "There was a problem uploading the image";
 }
-
-
 ?>

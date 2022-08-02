@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css");
 * {
     margin: 0;
     padding: 0;
@@ -191,7 +192,7 @@ p {
 }
 
 .header {
-    background: radial-gradient(#fff, #ffd6d6);
+    background: radial-gradient(#fff, #85C092);
 }
 
 .header .row {
@@ -203,7 +204,7 @@ p {
 }
 
 .col-3 {
-    flex-basis: 30%;
+    flex-basis: 100%;
     min-width: 250px;
     margin-bottom: 30px;
 }
@@ -421,6 +422,7 @@ ul {
    position: absolute;
    width: 110px;
    height: 100%;
+   color: #ffffff;
    background: linear-gradient(to right, #ff105f, #ffad06);
    border-radius: 30px;
    transition: .5s;
@@ -458,6 +460,7 @@ ul {
     cursor: pointer;
     display: block;
     margin: auto;
+    color: white;
     background: linear-gradient(to right, #ff105f, #ffad06);
     border: 0;
     outline: none;
