@@ -5,9 +5,8 @@ include "dbFunction.php";
 
 if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])) {
     header("Location: Account.php");
-} else {
-    $usertype = $_SESSION['usertype'];
-    echo $usertype;
+} else if ($_SESSION['usertype'] == 'user' || !isset($_SESSION['usertype'])) {
+	header("Location: Account.php");
 }
 
 $query = "SELECT * FROM checkout WHERE Status = 'pending'";
@@ -83,51 +82,55 @@ $row_cnt = count((array) $response);
         </div>
 
         <div class="menu-items">
-            <ul class="nav-links">
-                <li><a href="adminReport.php">
-                        <i class="uil uil-estate"></i>
-                        <span class="link-name">Dahsboard</span>
-                    </a></li>
-                <li><a href="adminMain.php">
-                        <i class="uil uil-files-landscapes"></i>
-                        <span class="link-name">Pending Orders</span>
-                    </a></li>
-                <li><a href="adminCheck.php">
-                        <i class="uil uil-truck"></i>
-                        <span class="link-name">Delivering Orders</span>
-                    </a></li>
-                <li><a href="adminMenu.php">
-                        <i class="uil uil-book-alt"></i>
-                        <span class="link-name">Menu</span>
-                    </a></li>
-                <li><a href="adminMenuAdd.php">
-                        <i class="uil uil-book-medical"></i>
-                        <span class="link-name">Menu Add</span>
-                    </a></li>
-                <li><a href="adminQuestion.php">
-                        <i class="uil uil-comments"></i>
-                        <span class="link-name">Question</span>
-                    </a></li>
-            </ul>
+                <ul class="nav-links">
+                    <li><a href="adminReport.php">
+                            <i class="uil uil-estate"></i>
+                            <span class="link-name">Dahsboard</span>
+                        </a></li>
+                    <li><a href="adminMain.php">
+                            <i class="uil uil-files-landscapes"></i>
+                            <span class="link-name">Pending Orders</span>
+                        </a></li>
+                    <li><a href="adminCheck.php">
+                            <i class="uil uil-truck"></i>
+                            <span class="link-name">Delivering Orders</span>
+                        </a></li>
+                        <li><a href="adminFullCO.php">
+                            <i class="uil uil-check-circle"></i>
+                            <span class="link-name">Completed Orders</span>
+                        </a></li>
+                    <li><a href="adminMenu.php">
+                            <i class="uil uil-book-alt"></i>
+                            <span class="link-name">Menu</span>
+                        </a></li>
+                    <li><a href="adminMenuAdd.php">
+                            <i class="uil uil-book-medical"></i>
+                            <span class="link-name">Menu Add</span>
+                        </a></li>
+                    <li><a href="adminQuestion.php">
+                            <i class="uil uil-comments"></i>
+                            <span class="link-name">Question</span>
+                        </a></li>
+                </ul>
 
-            <ul class="logout-mode">
-                <li><a href="adminLogout.php">
-                        <i class="uil uil-signout"></i>
-                        <span class="link-name">Logout</span>
-                    </a></li>
+                <ul class="logout-mode">
+                    <li><a href="adminLogout.php">
+                            <i class="uil uil-signout"></i>
+                            <span class="link-name">Logout</span>
+                        </a></li>
 
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-moon"></i>
-                        <span class="link-name">Dark Mode</span>
-                    </a>
+                    <li class="mode">
+                        <a href="#">
+                            <i class="uil uil-moon"></i>
+                            <span class="link-name">Dark Mode</span>
+                        </a>
 
-                    <div class="mode-toggle">
-                        <span class="switch"></span>
-                    </div>
-                </li>
-            </ul>
-        </div>
+                        <div class="mode-toggle">
+                            <span class="switch"></span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
     </nav>
 
     <section class="dashboard">

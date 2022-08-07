@@ -3,7 +3,7 @@ session_start();
 
 include "dbFunction.php";
 
-$queryItems = "SELECT * FROM `fooditem`";
+$queryItems = "SELECT * FROM `fooditem` ORDER BY Rating DESC";
 
 $resultItems = mysqli_query($link, $queryItems) or die(mysqli_error($link));
 

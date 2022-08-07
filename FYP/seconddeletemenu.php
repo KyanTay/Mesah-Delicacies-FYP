@@ -3,11 +3,11 @@
 include "dbFunction.php";
 session_start();
 
+
 if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])) {
     header("Location: Account.php");
-} else {
-    $usertype = $_SESSION['usertype'];
-    echo $usertype;
+} else if ($_SESSION['usertype'] == 'user' || !isset($_SESSION['usertype'])) {
+    header("Location: Account.php");
 }
 
 $query = "SELECT * FROM fooditem";
@@ -28,7 +28,7 @@ $row_cnt = count((array) $response);
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" type="text/javascript"></script>
-         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <title>Admin Dashboard Panel</title> 
         <script>
             $(document).ready(function () {
@@ -80,6 +80,10 @@ $row_cnt = count((array) $response);
                     <li><a href="adminCheck.php">
                             <i class="uil uil-truck"></i>
                             <span class="link-name">Delivering Orders</span>
+                        </a></li>
+                    <li><a href="adminFullCO.php">
+                            <i class="uil uil-check-circle"></i>
+                            <span class="link-name">Completed Orders</span>
                         </a></li>
                     <li><a href="adminMenu.php">
                             <i class="uil uil-book-alt"></i>
@@ -133,7 +137,7 @@ $row_cnt = count((array) $response);
                         <div class="box box4">
                             <i class="uil uil-comments"></i>
                             <span class="text">Items on menu</span>
-                            <span class="number"><?php echo $row_cnt?></span>
+                            <span class="number"><?php echo $row_cnt ?></span>
                         </div>
                     </div>
                 </div>

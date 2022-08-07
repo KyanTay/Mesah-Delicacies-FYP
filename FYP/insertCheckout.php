@@ -12,15 +12,15 @@ $phoneNo = $_POST['phoneNo'];
 $paymentMethod = $_POST['paymentMethod'];
 $message = $_POST['message'];
 $total = $_POST['total'];
-$uniqId = time().'_'.rand();
+$uniqOId = time().'_'.rand();
 $status = "pending";
-
+$Dstatus = "pending";
 
 $query = "INSERT INTO checkout
-          (FullName,Address,Email,PhoneNo,PaymentMethod,Message,Status,UserID,TotalPrice,orderID) 
+          (FullName,Address,Email,PhoneNo,PaymentMethod,Message,Status,UserID,TotalPrice,DStatus,orderID) 
           VALUES 
           ('$fullname','$address','$email','$phoneNo',
-           '$paymentMethod', '$message','$status','$userID','$total','$uniqId')";
+           '$paymentMethod', '$message','$status','$userID','$total','$Dstatus','$uniqOId')";
 
 $status = mysqli_query($link, $query);
  
@@ -32,11 +32,12 @@ while($row = mysqli_fetch_array($result)) {
     $food_name = $row['Name'];
     $food_quantity = $row['Quantity'];
     $food_price = $row['Price'];
+    $food_id = $row['FoodID'];
     
     $cartInsert = "INSERT INTO admincart
-          (userID,FoodName,FoodQuantity,FoodPrice,orderID) 
+          (userID,FoodName,FoodQuantity,FoodPrice,orderID,FoodID) 
           VALUES 
-          ('$userID','$food_name','$food_quantity','$food_price','$uniqId')";
+          ('$userID','$food_name','$food_quantity','$food_price','$uniqOId','$food_id')";
     
     $insert = mysqli_query($link, $cartInsert);
 }

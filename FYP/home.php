@@ -5,8 +5,13 @@
  */
 session_start();
 
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['username']) && isset($_SESSION['user_id'])) {
     $username = $_SESSION['username'];
+} else if (isset($_SESSION['user_id'])) {
+    $uniqId = $_SESSION['user_id'];
+} else {
+    $uniqId = time();
+    $_SESSION['user_id'] = $uniqId;
 }
 ?>
 
@@ -19,7 +24,7 @@ if (isset($_SESSION['user_id'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="test">
         <title>Mesah Delicacies - Home</title>
-        <link rel="stylesheet" href="CSS/style.css">
+        <link rel="stylesheet" href="css/style.css">
         <script type="module" src="main.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
@@ -34,16 +39,171 @@ if (isset($_SESSION['user_id'])) {
                     dataType: "JSON",
                     success: function (response) {
                         var table = "";
+                        var x = 0;
                         for (i = 0; i < response.length; i++) {
-                            table += "<form " + "class='col-4'" + "action='Details.php'method='post'" + ">" +
-                                    "<input class='inputFood' id='foodid' name='foodid' value='" + response[i].FoodID + "'>" +
-                                    "<img src='images/" + response[i].Image + "'>" +
-                                    "<h4>" + response[i].FoodName + "</h4>" +
-                                    "<p>$" + response[i].Price + "</p>" +
-                                    "<button type='submit'class='btnMenu'>Shop Now</button>" +
-                                    "</form>";
+                            if (response[i].Rating == 0) {
+                                if (x <= 2) {
+                                    table += "<form " + "class='col-4'" + "action='Details.php'method='post'" + ">" +
+                                            "<input class='inputFood' id='foodid' name='foodid' value='" + response[i].FoodID + "'>" +
+                                            "<img src='images/" + response[i].Image + "'>" +
+                                            "<h4>" + response[i].FoodName + "</h4>" +
+                                            "<p>$" + response[i].Price + "</p>" +
+                                            "<button type='submit'class='btnMenu'>Shop Now</button>" +
+                                            "</form>";
+                                    x = x + 1;
+                                    $(".menuFF").html(table);
+                                } else if (x > 2) {
+                                    table += "<form " + "class='col-4'" + "action='Details.php'method='post'" + ">" +
+                                            "<input class='inputFood' id='foodid' name='foodid' value='" + response[i].FoodID + "'>" +
+                                            "<img src='images/" + response[i].Image + "'>" +
+                                            "<h4>" + response[i].FoodName + "</h4>" +
+                                            "<p>$" + response[i].Price + "</p>" +
+                                            "<button type='submit'class='btnMenu'>Shop Now</button>" +
+                                            "</form> <div class='row'>";
+                                    x = x - 3;
+                                    $(".menuFF").html(table);
+                                }
+                            }
 
-                            $(".menuFF").html(table);
+                            if (response[i].Rating == 1) {
+                                if (x <= 2) {
+                                    table += "<form " + "class='col-4'" + "action='Details.php'method='post'" + ">" +
+                                            "<input class='inputFood' id='foodid' name='foodid' value='" + response[i].FoodID + "'>" +
+                                            "<img src='images/" + response[i].Image + "'>" +
+                                            "<h4>" + response[i].FoodName + "</h4>" +
+                                            "<div class='ratings'>" +
+                                            "<i class='fa-solid fa-star'></i></div>" +
+                                            "<p>$" + response[i].Price + "</p>" +
+                                            "<button type='submit'class='btnMenu'>Shop Now</button>" +
+                                            "</form>";
+                                    x = x + 1;
+                                    $(".menuFF").html(table);
+                                } else if (x > 2) {
+                                    table += "<form " + "class='col-4'" + "action='Details.php'method='post'" + ">" +
+                                            "<input class='inputFood' id='foodid' name='foodid' value='" + response[i].FoodID + "'>" +
+                                            "<img src='images/" + response[i].Image + "'>" +
+                                            "<h4>" + response[i].FoodName + "</h4>" +
+                                            "<div class='ratings'>" +
+                                            "<i class='fa-solid fa-star'></i></div>" +
+                                            "<p>$" + response[i].Price + "</p>" +
+                                            "<button type='submit'class='btnMenu'>Shop Now</button>" +
+                                            "</form> <div class='row'>";
+                                    x = x - 3;
+                                    $(".menuFF").html(table);
+                                }
+                            }
+
+                            if (response[i].Rating == 2) {
+                                if (x <= 2) {
+                                    table += "<form " + "class='col-4'" + "action='Details.php'method='post'" + ">" +
+                                            "<input class='inputFood' id='foodid' name='foodid' value='" + response[i].FoodID + "'>" +
+                                            "<img src='images/" + response[i].Image + "'>" +
+                                            "<h4>" + response[i].FoodName + "</h4>" +
+                                            "<div class='ratings'>" +
+                                            "<i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i></div>" +
+                                            "<p>$" + response[i].Price + "</p>" +
+                                            "<button type='submit'class='btnMenu'>Shop Now</button>" +
+                                            "</form>";
+                                    x = x + 1;
+                                    $(".menuFF").html(table);
+                                } else if (x > 2) {
+                                    table += "<form " + "class='col-4'" + "action='Details.php'method='post'" + ">" +
+                                            "<input class='inputFood' id='foodid' name='foodid' value='" + response[i].FoodID + "'>" +
+                                            "<img src='images/" + response[i].Image + "'>" +
+                                            "<h4>" + response[i].FoodName + "</h4>" +
+                                            "<div class='ratings'>" +
+                                            "<i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i></div>" +
+                                            "<p>$" + response[i].Price + "</p>" +
+                                            "<button type='submit'class='btnMenu'>Shop Now</button>" +
+                                            "</form> <div class='row'>";
+                                    x = x - 3;
+                                    $(".menuFF").html(table);
+                                }
+                            }
+
+                            if (response[i].Rating == 3) {
+                                if (x <= 2) {
+                                    table += "<form " + "class='col-4'" + "action='Details.php'method='post'" + ">" +
+                                            "<input class='inputFood' id='foodid' name='foodid' value='" + response[i].FoodID + "'>" +
+                                            "<img src='images/" + response[i].Image + "'>" +
+                                            "<h4>" + response[i].FoodName + "</h4>" +
+                                            "<div class='ratings'>" +
+                                            "<i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i></div>" +
+                                            "<p>$" + response[i].Price + "</p>" +
+                                            "<button type='submit'class='btnMenu'>Shop Now</button>" +
+                                            "</form>";
+                                    x = x + 1;
+                                    $(".menuFF").html(table);
+                                } else if (x > 2) {
+                                    table += "<form " + "class='col-4'" + "action='Details.php'method='post'" + ">" +
+                                            "<input class='inputFood' id='foodid' name='foodid' value='" + response[i].FoodID + "'>" +
+                                            "<img src='images/" + response[i].Image + "'>" +
+                                            "<h4>" + response[i].FoodName + "</h4>" +
+                                            "<div class='ratings'>" +
+                                            "<i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i></div>" +
+                                            "<p>$" + response[i].Price + "</p>" +
+                                            "<button type='submit'class='btnMenu'>Shop Now</button>" +
+                                            "</form> <div class='row'>";
+                                    x = x - 3;
+                                    $(".menuFF").html(table);
+                                }
+                            }
+
+                            if (response[i].Rating == 4) {
+                                if (x <= 2) {
+                                    table += "<form " + "class='col-4'" + "action='Details.php'method='post'" + ">" +
+                                            "<input class='inputFood' id='foodid' name='foodid' value='" + response[i].FoodID + "'>" +
+                                            "<img src='images/" + response[i].Image + "'>" +
+                                            "<h4>" + response[i].FoodName + "</h4>" +
+                                            "<div class='ratings'>" +
+                                            "<i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i></div>" +
+                                            "<p>$" + response[i].Price + "</p>" +
+                                            "<button type='submit'class='btnMenu'>Shop Now</button>" +
+                                            "</form>";
+                                    x = x + 1;
+                                    $(".menuFF").html(table);
+                                } else if (x > 2) {
+                                    table += "<form " + "class='col-4'" + "action='Details.php'method='post'" + ">" +
+                                            "<input class='inputFood' id='foodid' name='foodid' value='" + response[i].FoodID + "'>" +
+                                            "<img src='images/" + response[i].Image + "'>" +
+                                            "<h4>" + response[i].FoodName + "</h4>" +
+                                            "<div class='ratings'>" +
+                                            "<i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i></div>" +
+                                            "<p>$" + response[i].Price + "</p>" +
+                                            "<button type='submit'class='btnMenu'>Shop Now</button>" +
+                                            "</form> <div class='row'>";
+                                    x = x - 3;
+                                    $(".menuFF").html(table);
+                                }
+                            }
+
+                            if (response[i].Rating == 5) {
+                                if (x <= 2) {
+                                    table += "<form " + "class='col-4'" + "action='Details.php'method='post'" + ">" +
+                                            "<input class='inputFood' id='foodid' name='foodid' value='" + response[i].FoodID + "'>" +
+                                            "<img src='images/" + response[i].Image + "'>" +
+                                            "<h4>" + response[i].FoodName + "</h4>" +
+                                            "<div class='ratings'>" +
+                                            "<i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i></div>" +
+                                            "<p>$" + response[i].Price + "</p>" +
+                                            "<button type='submit'class='btnMenu'>Shop Now</button>" +
+                                            "</form>";
+                                    x = x + 1;
+                                    $(".menuFF").html(table);
+                                } else if (x > 2) {
+                                    table += "<form " + "class='col-4'" + "action='Details.php'method='post'" + ">" +
+                                            "<input class='inputFood' id='foodid' name='foodid' value='" + response[i].FoodID + "'>" +
+                                            "<img src='images/" + response[i].Image + "'>" +
+                                            "<h4>" + response[i].FoodName + "</h4>" +
+                                            "<div class='ratings'>" +
+                                            "<i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i></div>" +
+                                            "<p>$" + response[i].Price + "</p>" +
+                                            "<button type='submit'class='btnMenu'>Shop Now</button>" +
+                                            "</form> <div class='row'>";
+                                    x = x - 3;
+                                    $(".menuFF").html(table);
+                                }
+                            }
                         }
                     },
                     error: function (obj, textStatus, errorThrown) {
@@ -69,15 +229,12 @@ if (isset($_SESSION['user_id'])) {
                             <li><a href="About.php">About</a></li>
                             <li><a href="Contact.php">Contact</a></li>
                             <?php
-                            if (isset($_SESSION['user_id'])) {
-                                ?>
-                                <li><a href="Profile.php"><?php echo $username ?></a></li>
-                            <?php } else {
+                            if (!isset($_SESSION['username'])) {
                                 ?>
                                 <li><a href="Account.php">Login/Register</a></li>
-                                <?php
-                            }
-                            ?>
+                            <?php } else { ?>
+                                <li><a href="Profile.php"><?php echo $username ?></a></li>
+                            <?php } ?>
                         </ul>
                     </nav>
                     <a href="Cart.php"><img src="images/cart.png" width="30px" height="30px"></a>
@@ -123,25 +280,21 @@ if (isset($_SESSION['user_id'])) {
                     <div class="footer-col">
                         <h4>Mesah Delicacies</h4>
                         <ul>
-                            <li><a href="#">about us</a></li>
-                            <li><a href="#">our services</a></li>
-                            <li><a href="#">privacy policy</a></li>
+                            <li><a href="About.php">about us</a></li>
+                            <li><a href="Contact.php">contact us</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
-                        <h4>get help</h4>
+                        <h4>payment methods</h4>
                         <ul>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">shipping</a></li>
-                            <li><a href="#">returns</a></li>
-                            <li><a href="#">order status</a></li>
-                            <li><a href="#">payment options</a></li>
+                            <li><a>cash</a></li>
+                            <li><a href="https://abs.org.sg/consumer-banking/pay-now" target="_blank">paynow</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h4>social media</h4>
                         <div class="social-links">
-                            <a href="https://www.facebook.com/MesahwithDelicacies/" target="_blank"><i class="fab fa-facebook-f"></i></a>  
+                            <a href="https://www.facebook.com/MesahwithDelicacies/" target="_blank"><i class="fab fa-facebook-f"></i></a>
                             <a href="https://www.instagram.com/mesahdelicacies/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
@@ -155,8 +308,8 @@ if (isset($_SESSION['user_id'])) {
                                 <input class="inputD" placeholder="Email" class="email" type="text">
                             </div>
                             <button type="submit" class="btn-sub">Subscribe</button>
-                        </ul>
                     </div>
+                    </ul>
                 </div>
             </div>
         </footer>

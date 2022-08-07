@@ -4,9 +4,8 @@ session_start();
 
 if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])) {
     header("Location: Account.php");
-} else {
-    $usertype = $_SESSION['usertype'];
-    echo $usertype;
+} else if ($_SESSION['usertype'] == 'user' || !isset($_SESSION['usertype'])) {
+    header("Location: Account.php");
 }
 
 include "dbFunction.php";
@@ -74,6 +73,10 @@ $row_cnt = count($response);
                             <i class="uil uil-truck"></i>
                             <span class="link-name">Delivering Orders</span>
                         </a></li>
+                    <li><a href="adminFullCO.php">
+                            <i class="uil uil-check-circle"></i>
+                            <span class="link-name">Completed Orders</span>
+                        </a></li>
                     <li><a href="adminMenu.php">
                             <i class="uil uil-book-alt"></i>
                             <span class="link-name">Menu</span>
@@ -118,13 +121,13 @@ $row_cnt = count($response);
             <div class="dash-content">
                 <div class="overview">
                     <div class="title">
-                    <i class="uil uil-book-alt"></i>
+                        <i class="uil uil-book-alt"></i>
                         <span class="text">Edit Item</span>
                     </div>
 
                     <div class="boxes">
                         <div class="box box4">
-                        <i class="uil uil-book-alt"></i>
+                            <i class="uil uil-book-alt"></i>
                             <span class="text">Items on menu</span>
                             <span class="number"><?php echo $row_cnt ?></span>
                         </div>

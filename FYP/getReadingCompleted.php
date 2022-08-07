@@ -3,7 +3,9 @@ session_start();
 
 include "dbFunction.php";
 
-$queryItems = "SELECT * FROM `fooditem` ORDER BY Rating DESC LIMIT 0,4";
+$userCheck = $_SESSION['email'];
+
+$queryItems = "SELECT * FROM completedorders WHERE Email = '$userCheck'";
 
 $resultItems = mysqli_query($link, $queryItems) or die(mysqli_error($link));
 

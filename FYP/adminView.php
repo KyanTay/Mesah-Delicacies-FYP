@@ -2,14 +2,14 @@
 <?php
 include "dbFunction.php";
 
+session_start();
+
 if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])) {
     header("Location: Account.php");
-} else {
-    $usertype = $_SESSION['usertype'];
-    echo $usertype;
+} else if ($_SESSION['usertype'] == 'user' || !isset($_SESSION['usertype'])) {
+    header("Location: Account.php");
 }
 
-session_start();
 
 $userIDView = $_POST['userid'];
 $orderID = $_POST['orderid'];
@@ -60,6 +60,10 @@ $row_cnt = count((array) $responseU);
                     <li><a href="adminCheck.php">
                             <i class="uil uil-truck"></i>
                             <span class="link-name">Delivering Orders</span>
+                        </a></li>
+                    <li><a href="adminFullCO.php">
+                            <i class="uil uil-check-circle"></i>
+                            <span class="link-name">Completed Orders</span>
                         </a></li>
                     <li><a href="adminMenu.php">
                             <i class="uil uil-book-alt"></i>
@@ -113,7 +117,7 @@ $row_cnt = count((array) $responseU);
                         <div class="box box4">
                             <i class="uil uil-comments"></i>
                             <span class="text">Number of Pending Orders</span>
-                            <span class="number"><?php echo $row_cnt?></span>
+                            <span class="number"><?php echo $row_cnt ?></span>
                         </div>
                     </div>
                     <div class="activity">

@@ -29,6 +29,15 @@ if (mysqli_num_rows($resultCheck) == 1) {
     $address = $_SESSION['address'];
     $phoneno = $_SESSION['phoneno'];
 }
+
+$userIDView = $_POST['userid'];
+$orderID = $_POST['orderid'];
+$query = "SELECT * FROM admincart WHERE userID = '$userIDView' and orderID = '$orderID'";
+$result = mysqli_query($link, $query) or die(mysqli_errno($link));
+
+while ($rowU = mysqli_fetch_array($result)) {
+    $response[] = $rowU;
+}
 ?>
 <html lang="en">
 
@@ -40,16 +49,16 @@ if (mysqli_num_rows($resultCheck) == 1) {
         <title>Mesah Delicacies - Home</title>
         <link rel="stylesheet" href="CSS/profilestyle.css">
         <script type="module" src="main.js"></script>
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" type="text/javascript"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script>
             $(document).ready(function () {
                 $.ajax({
                     type: "GET",
-                    url: "getReadingUserProfile.php",
+                    url: "getReadingProfile.php",
                     cache: false,
                     dataType: "JSON",
                     success: function (response) {
@@ -71,35 +80,8 @@ if (mysqli_num_rows($resultCheck) == 1) {
                                     "</td>" +
                                     "</tr>" +
                                     "<hr>";
-                            $(".checkoutInsert").html(table);
-                        }
-                    },
-                    error: function (obj, textStatus, errorThrown) {
-                        console.log("Error " + textStatus + ": " + errorThrown);
-                    }
-                });
 
-                $.ajax({
-                    type: "GET",
-                    url: "getReadingCompleted.php",
-                    cache: false,
-                    dataType: "JSON",
-                    success: function (response) {
-                        var table = "";
-                        for (i = 0; i < response.length; i++) {
-                            table += "<tr>" +
-                                    "<td>" + response[i].FullName + "</td>" +
-                                    "<td>$" + response[i].amountSpent + "</td>" +
-                                    "<td>" + response[i].orderID + "</td>" +
-                                    "<td>" +
-                                    "<form action='foodItemRate.php' method='post'>" +
-                                    "<input type='hidden' name='orderid' value='" + response[i].orderID + "'/>" +
-                                    "<button class='btnMain' type='submit' name='rateBtn'>Rate</button>" +
-                                    "</form>" +
-                                    "</td>" +
-                                    "</tr>" +
-                                    "<hr>";
-                            $(".checkoutInsertC").html(table);
+                            $(".checkoutInsert").html(table);
                         }
                     },
                     error: function (obj, textStatus, errorThrown) {
@@ -137,98 +119,62 @@ if (mysqli_num_rows($resultCheck) == 1) {
         </div>
 
         <div class="sttngs">
-            <h2>SETTINGS</h2>
+            <h2>Ordered Items View</h2>
             <div class="tabordion">
-                <section id="section1">
-                    <input class="t" type="radio" name="sections" id="option1" checked>
-                    <label for="option1" class="trr">Account</label>
-                    <article>
-                        <form method="post" action="profileUpdate.php">
-                            <div class="frm">
-                                <div class="tr">
-                                    <label class="label" for="input">FULLNAME</label>
-                                    <input class="input" type="text" id="input" name="fullname" value="<?php echo $fullname ?>" required>
+                <div class="small-container cart-page">
+                    <table>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>SubTotal</th>
+                        </tr>
+                        <?php
+                        $subtotalC = 0;
+                        $subtotal = 0;
+                        $delivery = 10;
+                        $total = 0;
+                        for ($i = 0; $i < count($response); $i++) {
+                            $name = $response[$i]['FoodName'];
+                            $price = $response[$i]['FoodPrice'];
+                            $quantity = $response[$i]['FoodQuantity'];
 
-                                    <label class="label" for="input">USERNAME</label>
-                                    <input class="input" type="text" id="input" name="username" value="<?php echo $username ?>" required>
+                            if ($subtotalC == 0) {
+                                $subtotalC += $quantity * $price;
+                            } else if ($subtotalC > 0) {
+                                $subtotalC -= $subtotalC;
+                                $subtotalC += $quantity * $price;
+                            }
 
-                                    <label class="label" for="input">ADDRESS</label>
-                                    <input class="input" type="text" id="input" name="address" value="<?php echo $address ?>" required>
-
-                                    <label class="label" for="input">PHONE NO</label>
-                                    <input class="input" type="text" id="input" name="phoneno" value="<?php echo $phoneno ?>" required>
-
-                                    <label class="label" for="input">EMAIL</label>
-                                    <input class="input" type="text" id="input" name="email" value="<?php echo $email ?>" required>
-                                </div>
-                                <br>
-                                <button type="submit" class="btnProfile">Update profile</button>
-                            </div>
-                        </form>
-                    </article>
-                </section>
-                <section id="section2">
-                    <input class="t" type="radio" name="sections" id="option2">
-                    <label for="option2" class="trr">ORDER DETAILS</label>
-                    <article>
-                        <div class="small-container cart-page"> 
-                            <table>
-                                <tr>
-                                    <th>Full Name</th>
-                                    <th>Total Price</th>
-                                    <th>Payment status</th>
-                                    <th>Delivery Status</th>
-                                    <th>Payment Method</th>
-                                    <th>Order ID</th>
-                                    <th>View Items</th>
-                                </tr>
-                                <tbody class="checkoutInsert"></tbody>
-                            </table>
-                        </div>
-                    </article>
-                </section>
-                <section id="section3">
-                    <input class="t" type="radio" name="sections" id="option3">
-                    <label for="option3" class="trr">COMPLETED ORDERS</label>
-                    <article>
-                        <div class="small-container cart-page"> 
-                            <table>
-                                <tr>
-                                    <th>Full Name</th>
-                                    <th>Total Price</th>
-                                    <th>Order ID</th>
-                                    <th>View Items</th>
-                                </tr>
-                                <tbody class="checkoutInsertC"></tbody>
-                            </table>
-                        </div>
-                    </article>
-                </section>
-                <section id="section4">
-                    <input class="t" type="radio" name="sections" id="option4">
-                    <label for="option4" class="trr">Password</label>
-                    <article>
-                        <form method="post" action="profilePassword.php">
-                            <div class="tr wwq">
-                                <label class="label" for="input">current Password</label>
-                                <input class="input e" type="password" id="input" name="currentpassword">
-
-                                <label class="label" for="input">new password</label>
-                                <input class="input e" type="password" id="input" name="newpassword">
-                            </div>
-                            <button class="btnProfile" type="submit">Change Password</button>
-                        </form>
-                    </article>
-                </section>
-                <section id="section5">
-                    <input class="t" type="radio" name="sections" id="option5">
-                    <label for="option5" class="trr">
-                        <a href="adminLogout.php" >
-                            <i class="uil uil-signout"></i>
-                            <span class="link-name">Logout</span>
-                        </a>
-                    </label>
-                </section>
+                            $subtotal += $subtotalC;
+                            $total = $subtotal + $delivery;
+                            ?>
+                            <tr>
+                                <td><?php echo $name ?></td>
+                                <td><?php echo $quantity ?></td>
+                                <td>$<?php echo $subtotalC ?></td>
+                            </tr>                
+                        <?php } ?>
+                    </table>
+                    <div class="total-price">
+                        <table>
+                            <tr>
+                                <td>Subtotal</td>
+                                <td>$<?php echo $subtotal ?></td>
+                            </tr>
+                            <tr>
+                                <td>Delivery Fee</td>
+                                <td class="child">$10.00</td>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <td>$<?php echo $total ?></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="checkout-btn">
+                        <a href="Profile.php" class="btn-cart">GO BACK</a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -283,12 +229,6 @@ if (mysqli_num_rows($resultCheck) == 1) {
                     MenuItems.style.maxHeight = "0px";
                 }
             }
-            swal({
-                title: "Updated",
-                text: "You have updated your password",
-                icon: "success",
-                button: "Back",
-            });
         </script>
     </body>
 

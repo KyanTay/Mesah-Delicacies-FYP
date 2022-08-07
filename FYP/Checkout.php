@@ -2,12 +2,17 @@
 <?php
 session_start();
 
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['username']) && isset($_SESSION['user_id'])) {
     $username = $_SESSION['username'];
     $fullname = $_SESSION['fullname'];
     $email = $_SESSION['email'];
     $address = $_SESSION['address'];
     $phoneno = $_SESSION['phoneno'];
+} else if (isset($_SESSION['user_id'])) {
+    $uniqId = $_SESSION['user_id'];
+} else {
+    $uniqId = time();
+    $_SESSION['user_id'] = $uniqId;
 }
 ?>
 <html>
@@ -17,7 +22,7 @@ if (isset($_SESSION['user_id'])) {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Mesah Delicacies - Menu</title>
-        <link rel="stylesheet" href="CSS/Checkout.css">
+        <link rel="stylesheet" href="css/Checkout.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -108,15 +113,12 @@ if (isset($_SESSION['user_id'])) {
                         <li><a href="About.php">About</a></li>
                         <li><a href="Contact.php">Contact</a></li>
                         <?php
-                        if (isset($_SESSION['user_id'])) {
-                            ?>
-                            <li><a href="Profile.php"><?php echo $username ?></a></li>
-                        <?php } else {
+                        if (!isset($_SESSION['username'])) {
                             ?>
                             <li><a href="Account.php">Login/Register</a></li>
-                            <?php
-                        }
-                        ?>
+                        <?php } else { ?>
+                            <li><a href="Profile.php"><?php echo $username ?></a></li>
+                        <?php } ?>
                     </ul>
                 </nav>
                 <a href="Cart.php"><img src="images/cart.png" width="30px" height="30px"></a>
@@ -133,14 +135,25 @@ if (isset($_SESSION['user_id'])) {
                     <form action="insertCheckout.php" method="post">
                         <h3>Billing Address</h3>
                         <div class="row">
-                            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                            <input type="text" id="fname" name="fullname" placeholder="John M. Doe" value="<?php echo $fullname ?>">
-                            <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                            <input type="text" id="email" name="email" placeholder="john@example.com" value="<?php echo $email ?>">
-                            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                            <input type="text" id="adr" name="address" placeholder="Republic poly" value="<?php echo $address ?>">
-                            <label for="city"><i class="fa-solid fa-phone"></i> Phone No</label>
-                            <input type="text" id="phone" name="phoneNo" placeholder="98765432" value="<?php echo $phoneno ?>">
+                            <?php if (isset($_SESSION['username']) && isset($_SESSION['user_id'])) { ?>
+                                <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                                <input type="text" id="fname" name="fullname" placeholder="John M. Doe" value="<?php echo $fullname ?>">
+                                <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                                <input type="text" id="email" name="email" placeholder="john@example.com" value="<?php echo $email ?>">
+                                <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                                <input type="text" id="adr" name="address" placeholder="Republic poly" value="<?php echo $address ?>">
+                                <label for="city"><i class="fa-solid fa-phone"></i> Phone No</label>
+                                <input type="text" id="phone" name="phoneNo" placeholder="98765432" value="<?php echo $phoneno ?>">
+                            <?php } else { ?>
+                                <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+                                <input type="text" id="fname" name="fullname" placeholder="John M. Doe">
+                                <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                                <input type="text" id="email" name="email" placeholder="john@example.com">
+                                <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
+                                <input type="text" id="adr" name="address" placeholder="Republic poly">
+                                <label for="city"><i class="fa-solid fa-phone"></i> Phone No</label>
+                                <input type="text" id="phone" name="phoneNo" placeholder="98765432">
+                            <?php } ?>
                         </div>
                         <h3>Payment</h3>
 
@@ -180,35 +193,29 @@ if (isset($_SESSION['user_id'])) {
             <div class="container-foot">
                 <div class="row-foot">
                     <div class="footer-col">
+                        <h4>Mesah Delicacies</h4>
                         <ul>
-                            <h4>Mesah Delicacies</h4>
-                            <li><a href="#">about us</a></li>
-                            <li><a href="#">our services</a></li>
-                            <li><a href="#">privacy policy</a></li>
+                            <li><a href="About.php">about us</a></li>
+                            <li><a href="Contact.php">contact us</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
+                        <h4>payment methods</h4>
                         <ul>
-                            <h4>get help</h4>
-
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">shipping</a></li>
-                            <li><a href="#">returns</a></li>
-                            <li><a href="#">order status</a></li>
-                            <li><a href="#">payment options</a></li>
+                            <li><a>cash</a></li>
+                            <li><a href="https://abs.org.sg/consumer-banking/pay-now" target="_blank">paynow</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
                         <h4>social media</h4>
                         <div class="social-links">
-                            <a href="https://www.facebook.com/MesahwithDelicacies/" target="_blank"><i class="fab fa-facebook-f"></i></a>  
+                            <a href="https://www.facebook.com/MesahwithDelicacies/" target="_blank"><i class="fab fa-facebook-f"></i></a>
                             <a href="https://www.instagram.com/mesahdelicacies/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                     <div class="footer-col">
+                        <h4>Subscirbe to us</h4>
                         <ul>
-                            <h4>Subscirbe to us</h4>
-
                             <li>
                                 <p>To get the latest menu and news on Mesah Delicacies</p>
                             </li>

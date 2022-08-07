@@ -150,7 +150,7 @@ td img {
 }
 
 .sttngs{
-    max-width:1064px;
+    width: 1200px;
     margin: 50px auto;
     background:#fff;
     padding:15px;
@@ -441,32 +441,6 @@ input, select, textarea {
     text-transform:none;
 }
 
-
-.sttngs button {
-    text-transform: uppercase;
-    font-weight:800;
-    letter-spacing:1px;
-    outline: 0;
-    background: limegreen;
-    width: 200px;
-    border: 0;
-    padding: 15px;
-    color: #FFFFFF;
-    font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
-    border-radius:3px;
-    margin-top:30px;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, 0px);
-}
-
-.sttngs button:hover, .sttngs  button:active, .sttngs button:focus {
-    background: #43A047;
-}
-
 .container-foot {
     max-width: 1170px;
     margin: auto;
@@ -628,7 +602,9 @@ th:last-child {
     color: #fff;
     padding: 13px 160px;
     margin: 10px 0;
-    border-radius: 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    border-color: transparent;
     transition: ease-in-out, 0.5s;
 }
 
@@ -650,24 +626,6 @@ th:last-child {
     position:relative;
     top:11px;
 }
-
-.btn-cart {
-    display: inline-block;
-    background: #ff523b;
-    color: #fff;
-    padding: 13px 160px;
-    margin: 10px 0;
-    border-radius: 20px;
-    transition: ease-in-out, 0.5s;
-}
-
-.btn-cart:hover {
-    background: #563434;
-}
-
-
-
-
 
 @media (max-width: 768px) {
     .social{
@@ -809,4 +767,39 @@ th:last-child {
 
 .btn-sub:hover {
     background: #563434;
+}
+
+.btnMain {
+    display: inline-block ;
+    background: #0E4BF1;
+    color: #fff;
+    padding: 8px 30px;
+    margin: 4px 0;
+    border-radius: 30px;
+    transition: ease-in-out, 0.5s;
+    border-color: transparent;
+    cursor: pointer;
+}
+
+.btnMain:hover {
+    background: #563434;
+}
+
+.btnProfile {
+    display: inline-block ;
+    background: #0E4BF1;
+    color: #fff;
+    padding: 8px 30px;
+    margin: 4px 0;
+    transition: ease-in-out, 0.5s;
+    border-color: transparent;
+    cursor: pointer;
+}
+
+.btnProfile:hover {
+    background: #563434;
+}
+
+.rateyo {
+    right: 2%;
 }

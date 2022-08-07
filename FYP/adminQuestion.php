@@ -6,10 +6,10 @@ session_start();
 
 if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])) {
     header("Location: Account.php");
-} else {
-    $usertype = $_SESSION['usertype'];
-    echo $usertype;
+} else if ($_SESSION['usertype'] == 'user' || !isset($_SESSION['usertype'])) {
+    header("Location: Account.php");
 }
+
 
 $query = "SELECT * FROM contact";
 $result = mysqli_query($link, $query) or die(mysqli_errno($link));
@@ -18,7 +18,7 @@ while ($row = mysqli_fetch_array($result)) {
     $response[] = $row;
 }
 
-$row_cntQ = count($response);
+$row_cntQ = count((array) $response);
 ?>
 <html lang="en">
     <head>
@@ -55,6 +55,10 @@ $row_cntQ = count($response);
                     <li><a href="adminCheck.php">
                             <i class="uil uil-truck"></i>
                             <span class="link-name">Delivering Orders</span>
+                        </a></li>
+                    <li><a href="adminFullCO.php">
+                            <i class="uil uil-check-circle"></i>
+                            <span class="link-name">Completed Orders</span>
                         </a></li>
                     <li><a href="adminMenu.php">
                             <i class="uil uil-book-alt"></i>
@@ -120,27 +124,33 @@ $row_cntQ = count($response);
                                     <div class="col-md-12">
                                         <div class="testmonial_slider_area text-center owl-carousel">
                                             <?php
-                                            for ($i = 0; $i < count($response); $i++) {
-                                                $fullname = $response[$i]['FullName'];
-                                                $email = $response[$i]['Email'];
-                                                $subject = $response[$i]['Subject'];
-                                                $message = $response[$i]['Message'];
-                                                $cid = $response[$i]['contactID'];
-                                                ?>
-                                                <div class="box-area">		
-                                                    <h5><?php echo $fullname;?></h5>
-                                                    <span><?php echo $subject?></span>
-                                                    <span><?php echo $email?></span>	
-                                                    <p class="content">
-                                                        <?php echo $message?>
-                                                    </p>
-                                                    <form action="deleteContact.php" method="post">
-                                                        <input type="hidden" name="contactID" value="<?php echo $cid?>">
-                                                        <button class="btnMenu" type="submit">Remove</button>
-                                                    </form>
-                                                </div>                 
-                                            <?php } ?>
-                                        </div>
+                                            if (!empty($response)) {
+                                                for ($i = 0; $i < count($response); $i++) {
+                                                    $fullname = $response[$i]['FullName'];
+                                                    $email = $response[$i]['Email'];
+                                                    $subject = $response[$i]['Subject'];
+                                                    $message = $response[$i]['Message'];
+                                                    $cid = $response[$i]['contactID'];
+                                                    ?>
+                                                    <div class="box-area">		
+                                                        <h5><?php echo $fullname; ?></h5>
+                                                        <span><?php echo $subject ?></span>
+                                                        <span><?php echo $email ?></span>	
+                                                        <p class="content">
+                                                            <?php echo $message ?>
+                                                        </p>
+                                                        <form action="deleteContact.php" method="post">
+                                                            <input type="hidden" name="contactID" value="<?php echo $cid ?>">
+                                                            <button class="btnMenu" type="submit">Remove</button>
+                                                        </form>
+                                                    </div>                 
+                                                    <?php
+                                                }
+                                            } else {
+                                                ?> 
+                                            </div><h1>There are no questions at the moment</h1>
+                                        <?php }
+                                        ?>
                                     </div>
                                 </div>
                             </div>

@@ -16,7 +16,7 @@ $queryCheck = "SELECT * FROM user
 $resultCheck = mysqli_query($link, $queryCheck) or die(mysqli_error($link));
 
 if (mysqli_num_rows($resultCheck) == 1) {
-    
+
     $row = mysqli_fetch_array($resultCheck);
 
     $_SESSION['user_id'] = $row['UserID'];
@@ -30,7 +30,7 @@ if (mysqli_num_rows($resultCheck) == 1) {
     $_SESSION['usertype'] = $row['usertype'];
     
     if($row['usertype'] == "admin") {
-        header("Location: secondadminLogin.php");
+        header("Location: secondadminlogin.php");
     } else if ($row['usertype'] == "user") {
         header("Location: UserloginMsg.php");
     }

@@ -40,11 +40,12 @@ if (mysqli_num_rows($resultCheck) == 1) {
         <title>Mesah Delicacies - Home</title>
         <link rel="stylesheet" href="CSS/profilestyle.css">
         <script type="module" src="main.js"></script>
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" type="text/javascript"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script>
             $(document).ready(function () {
                 $.ajax({
@@ -283,9 +284,10 @@ if (mysqli_num_rows($resultCheck) == 1) {
                     MenuItems.style.maxHeight = "0px";
                 }
             }
+
             swal({
-                title: "Updated",
-                text: "You have updated your password",
+                title: "Submitted",
+                text: "Thank You For Your Feedback",
                 icon: "success",
                 button: "Back",
             });

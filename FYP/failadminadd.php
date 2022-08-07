@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <?php
 session_start();
+
 if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])) {
     header("Location: Account.php");
-} else {
-    $usertype = $_SESSION['usertype'];
-    echo $usertype;
+} else if ($_SESSION['usertype'] == 'user' || !isset($_SESSION['usertype'])) {
+    header("Location: Account.php");
 }
+include "dbFunction.php";
+
+$query = "SELECT * FROM fooditem";
+$result = mysqli_query($link, $query) or die(mysqli_errno($link));
+
+while ($row = mysqli_fetch_array($result)) {
+    $response[] = $row;
+}
+
+$row_cnt = count((array) $response);
 ?>
 <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
@@ -17,8 +28,9 @@ if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" type="text/javascript"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <title>Admin Dashboard Panel</title> 
+        <title>Admin Dashboard Panel</title>
     </head>
+
     <body>
         <nav>
             <div class="logo-name">
@@ -38,6 +50,10 @@ if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])) {
                     <li><a href="adminCheck.php">
                             <i class="uil uil-truck"></i>
                             <span class="link-name">Delivering Orders</span>
+                        </a></li>
+                    <li><a href="adminFullCO.php">
+                            <i class="uil uil-check-circle"></i>
+                            <span class="link-name">Completed Orders</span>
                         </a></li>
                     <li><a href="adminMenu.php">
                             <i class="uil uil-book-alt"></i>
@@ -91,7 +107,7 @@ if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])) {
                         <div class="box box4">
                             <i class="uil uil-comments"></i>
                             <span class="text">Items on menu</span>
-                            <span class="number">20,120</span>
+                            <span class="number"><?php echo $row_cnt ?></span>
                         </div>
                     </div>
                 </div>
@@ -107,7 +123,7 @@ if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])) {
                             <div>
                                 <input type="file" name="image" required>
                             </div>
-                            <textarea id="message" type="text" placeholder="DESCRIPTION" name="itemDesc" required=""></textarea>      
+                            <textarea id="message" type="text" placeholder="DESCRIPTION" name="itemDesc" required=""></textarea>
                             <input id="submitForm" name="upload" type="submit" value="GO!">
                         </form>
                     </div>
@@ -121,8 +137,8 @@ if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])) {
                 icon: "warning",
                 button: "Try Again",
             });
-
         </script>
         <script src="script/script.js"></script>
     </body>
+
 </html>

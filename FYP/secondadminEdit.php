@@ -2,13 +2,12 @@
 <?php
 include "dbFunction.php";
 session_start();
-
 if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])) {
     header("Location: Account.php");
-} else {
-    $usertype = $_SESSION['usertype'];
-    echo $usertype;
+} else if ($_SESSION['usertype'] == 'user' || !isset($_SESSION['usertype'])) {
+    header("Location: Account.php");
 }
+
 
 $query = "SELECT * FROM fooditem";
 $result = mysqli_query($link, $query) or die(mysqli_errno($link));
@@ -20,6 +19,7 @@ while ($row = mysqli_fetch_array($result)) {
 $row_cnt = count((array) $response);
 ?>
 <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,8 +28,8 @@ $row_cnt = count((array) $response);
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" type="text/javascript"></script>
-         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <title>Admin Dashboard Panel</title> 
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <title>Admin Dashboard Panel</title>
         <script>
             $(document).ready(function () {
                 $.ajax({
@@ -41,13 +41,13 @@ $row_cnt = count((array) $response);
                         var table = "";
                         for (i = 0; i < response.length; i++) {
 
-                            table += "<form " + "class='col-4'" + "action='menuEdit.php'method='post'" + ">"
-                                    + "<input class='inputFood' id='foodid' name='foodid' type='hidden' value='" + response[i].FoodID + "'>"
-                                    + "<img src='images/" + response[i].Image + "'>"
-                                    + "<h4>" + response[i].FoodName + "</h4>"
-                                    + "<p>$" + response[i].Price + "</p>"
-                                    + "<button type='submit'class='btnMain'>Edit</button>"
-                                    + "</form>";
+                            table += "<form " + "class='col-4'" + "action='menuEdit.php'method='post'" + ">" +
+                                    "<input class='inputFood' id='foodid' name='foodid' type='hidden' value='" + response[i].FoodID + "'>" +
+                                    "<img src='images/" + response[i].Image + "'>" +
+                                    "<h4>" + response[i].FoodName + "</h4>" +
+                                    "<p>$" + response[i].Price + "</p>" +
+                                    "<button type='submit'class='btnMain'>Edit</button>" +
+                                    "</form>";
 
                             $(".menuFF").html(table);
 
@@ -57,10 +57,10 @@ $row_cnt = count((array) $response);
                         console.log("Error " + textStatus + ": " + errorThrown);
                     }
                 });
-            }
-            );
+            });
         </script>
     </head>
+
     <body>
         <nav>
             <div class="logo-name">
@@ -80,6 +80,10 @@ $row_cnt = count((array) $response);
                     <li><a href="adminCheck.php">
                             <i class="uil uil-truck"></i>
                             <span class="link-name">Delivering Orders</span>
+                        </a></li>
+                    <li><a href="adminFullCO.php">
+                            <i class="uil uil-check-circle"></i>
+                            <span class="link-name">Completed Orders</span>
                         </a></li>
                     <li><a href="adminMenu.php">
                             <i class="uil uil-book-alt"></i>
@@ -125,21 +129,21 @@ $row_cnt = count((array) $response);
             <div class="dash-content">
                 <div class="overview">
                     <div class="title">
-                    <i class="uil uil-book-alt"></i>
+                        <i class="uil uil-book-alt"></i>
                         <span class="text">Menu</span>
                     </div>
 
                     <div class="boxes">
                         <div class="box box4">
-                        <i class="uil uil-book-alt"></i>
+                            <i class="uil uil-book-alt"></i>
                             <span class="text">Items on menu</span>
-                            <span class="number"><?php echo $row_cnt?></span>
+                            <span class="number"><?php echo $row_cnt ?></span>
                         </div>
                     </div>
                 </div>
                 <div class="activity">
                     <div class="title">
-                    <i class="uil uil-book-alt"></i>
+                        <i class="uil uil-book-alt"></i>
                         <span class="text">All items</span>
                     </div>
 
@@ -156,8 +160,8 @@ $row_cnt = count((array) $response);
                 icon: "success",
                 button: "View Menu",
             });
-
         </script>
         <script src="script/script.js"></script>
     </body>
+
 </html>

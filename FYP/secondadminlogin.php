@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <?php
 session_start();
+include "dbFunction.php";
+
+
 if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])) {
     header("Location: Account.php");
-} else {
-    $usertype = $_SESSION['usertype'];
-    echo $usertype;
+} else if ($_SESSION['usertype'] == 'user' || !isset($_SESSION['usertype'])) {
+    header("Location: Account.php");
 }
+
+$query = "SELECT * FROM checkout WHERE Status = 'pending'";
+$result = mysqli_query($link, $query) or die(mysqli_errno($link));
+
+while ($row = mysqli_fetch_array($result)) {
+    $response[] = $row;
+}
+
+$row_cnt = count((array) $response);
 ?>
 <html lang="en">
     <head>
@@ -85,6 +96,10 @@ if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])) {
                             <i class="uil uil-truck"></i>
                             <span class="link-name">Delivering Orders</span>
                         </a></li>
+                    <li><a href="adminFullCO.php">
+                            <i class="uil uil-check-circle"></i>
+                            <span class="link-name">Completed Orders</span>
+                        </a></li>
                     <li><a href="adminMenu.php">
                             <i class="uil uil-book-alt"></i>
                             <span class="link-name">Menu</span>
@@ -137,7 +152,7 @@ if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])) {
                         <div class="box box4">
                             <i class="uil uil-comments"></i>
                             <span class="text">Number of Pending Orders</span>
-                            <span class="number">20,120</span>
+                            <span class="number"><?php echo $row_cnt ?></span>
                         </div>
                     </div>
                     <div class="activity">

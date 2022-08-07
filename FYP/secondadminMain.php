@@ -3,12 +3,12 @@
 session_start();
 if (!isset($_SESSION['user_id']) && empty($_SESSION['user_id'])) {
     header("Location: Account.php");
-} else {
-    $usertype = $_SESSION['usertype'];
-    echo $usertype;
+} else if ($_SESSION['usertype'] == 'user' || !isset($_SESSION['usertype'])) {
+    header("Location: Account.php");
 }
+
 include "dbFunction.php";
-/*Completed Orders Count*/
+/* Completed Orders Count */
 $query = "SELECT * FROM checkout WHERE Status = 'pending'";
 $result = mysqli_query($link, $query) or die(mysqli_errno($link));
 
@@ -95,6 +95,10 @@ $row_cnt = count((array) $response);
                             <i class="uil uil-truck"></i>
                             <span class="link-name">Delivering Orders</span>
                         </a></li>
+                    <li><a href="adminFullCO.php">
+                            <i class="uil uil-check-circle"></i>
+                            <span class="link-name">Completed Orders</span>
+                        </a></li>
                     <li><a href="adminMenu.php">
                             <i class="uil uil-book-alt"></i>
                             <span class="link-name">Menu</span>
@@ -139,20 +143,20 @@ $row_cnt = count((array) $response);
             <div class="dash-content">
                 <div class="overview">
                     <div class="title">
-                    <i class="uil uil-files-landscapes"></i>
+                        <i class="uil uil-files-landscapes"></i>
                         <span class="text">Pending Orders</span>
                     </div>
 
                     <div class="boxes">                    
                         <div class="box box4">
-                        <i class="uil uil-files-landscapes"></i>
+                            <i class="uil uil-files-landscapes"></i>
                             <span class="text">Number of Pending Orders</span>
-                            <span class="number"><?php echo $row_cnt?></span>
+                            <span class="number"><?php echo $row_cnt ?></span>
                         </div>
                     </div>
                     <div class="activity">
                         <div class="title">
-                        <i class="uil uil-files-landscapes"></i>
+                            <i class="uil uil-files-landscapes"></i>
                             <span class="text">Recent Activity</span>
 
                         </div>

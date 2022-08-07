@@ -3,7 +3,7 @@ session_start();
 
 include "dbFunction.php";
 
-$queryItems = "SELECT * FROM checkout WHERE Status = 'Confirmed'";
+$queryItems = "SELECT * FROM checkout WHERE DStatus = 'Delivering'";
 
 $resultItems = mysqli_query($link, $queryItems) or die(mysqli_error($link));
 
